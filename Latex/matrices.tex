@@ -1,0 +1,138 @@
+\documentclass[a4paper,10pt]{scrartcl}
+\usepackage[ngerman]{babel}
+%\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[parfill]{parskip}
+\usepackage{multicol}
+\usepackage{amsmath}
+\usepackage{breqn}
+\usepackage{verbatim}
+
+
+\usepackage{geometry}
+ \geometry{
+ a4paper,
+ total={170mm,257mm},
+ left=20mm,
+ top=20mm,
+ }
+
+
+
+\begin{document}
+$$E = f^T A f - 2 f^T b + c$$
+$$f = (a_1^n, b_1^n, c_1^n, \dots a_m^s, b_m^s, c_m^s)^T$$
+$$E = E_d + E_s + E_c$$
+
+\section{$E_d$}
+$$E_d (f_n, f_s) = \sum_{j=1}^{m} \sum_{i \in N} (a_j^n x_i^2 + b_j^n x_i + c_j^n - I_{i,j})^2 + \dots$$
+$$(a_j x_i^2+b_j x_i+c_j-I_{i,j})^2 = a_j^2 x_i^4+2 a_j b_j x_i^3+2 a_j c_j x_i^2-2 a_j I_{i,j} x_i^2+b_j^2 x_i^2+2 b_j c_j x_i-2 b_j I_{i,j} x_i+c_j^2-2 c_j I_{i,j}+I_{i,j}^2$$
+\subsection{Quadratic in parameters $f$}
+$$ \sum_{j=1}^{m} \sum_{i \in N} a_j^2 x_i^4+2 a_j b_j x_i^3+2 a_j c_j x_i^2+b_j^2 x_i^2+2 b_j c_j x_i+c_j^2$$
+Für $j=1,2$, non-shadow:
+$A = \sum_{i \in N}
+\begin{pmatrix}
+x_i^4 & 0 & 0 & 0 & 0 & 0 \\
+2 x_i^3 & x_i^2 & 0 & 0 & 0 & 0 \\
+2 x_i^2 & 2 x_i & 1 & 0 & 0 & 0 \\
+0 & 0 & 0 & x_i^4 & 0 & 0 \\
+0 & 0 & 0 & 2 x_i^3 & x_i^2 & 0 \\
+0 & 0 & 0 & 2 x_i^2 & 2 x_i & 1
+\end{pmatrix}
+$
+\subsection{Linear in parameters $f$}
+$$\sum_{j=1}^{m} \sum_{i \in N} -2 a_j I_{i,j} x_i^2-2 b_j I_{i,j} x_i-2 c_j I_{i,j}$$
+Für $j=1,2$, non-shadow:
+$b = \sum_{i \in N} 
+\begin{pmatrix} 
+I_{i,1} x_i^2 \\
+I_{i,1} x_i\\
+I_{i,1} \\
+I_{i,2} x_i^2 \\
+I_{i,2} x_i\\
+I_{i,2}
+\end{pmatrix}
+$
+
+\section{$E_s$}
+$$E_s(f_n, f_s) = \sum_{j=1}^m \sum_{i} (\frac{\partial^2 f_j(x_i)}{\partial x^2})^2 + 2 (\frac{\partial^2 f_j(x_i)}{\partial x \partial y})^2 + (\frac{\partial^2 f_j(x_i)}{\partial y^2})^2 + ...$$
+
+$$ (\frac{\partial^2 f_j(x_i)}{\partial x^2})^2 = (2 a_j)^2  = 4 a_j^2 $$
+
+$$ \frac{\partial f_j(x_i)}{\partial x} = 2 a_j x_i + b_j$$
+
+$$ (\frac{\partial^2 f_j(x_i)}{\partial x \partial y})^2 = (\frac{1}{2} (\frac{\partial f_{j+1}(x_i)}{\partial x} - \frac{\partial f_{j-1}(x_i)}{\partial x}))^2 = \frac{1}{4} (2 a_{j+1} x_i + b_{j+1} - 2 a_{j-1} x_i - b_{j-1} )^2$$
+\begin{comment}
+$$ = \frac{1}{4}(4 a_{j+1} b_{j+1} x_i - 4 a_{j-1} b_{j+1} x_i - 4 a_{j+1} b_{j-1} x_i + 4 a_{j-1} b_{j-1} x_i + 4 a_{j+1}^2 x_i^2 + 4 a_{j-1}^2 x_i^2 -8 a_{j+1} a _{j-1} x_i^2 + b_{j+1}^2 - 2 b_{j+1} b_{j-1} + b_{j-1}^2)$$
+\end{comment}
+
+$$ (\frac{\partial^2 f_j(x_i)}{ \partial y^2})^2 = (f_{j+1}(x_i) - 2 f_j(x_i) + f_{j-1}(x_i))^2 = (a_{j+1} x_i^2 + b_{j+1} x_i + c_{j+1} - 2a_{j} x_i^2 - 2 b_{j} x_i - 2 c_{j} + a_{j-1} x_i^2 + b_{j-1} x_i + c_{j-1})^2$$
+
+\begin{comment}
+\begin{dmath*}
+= 2 a_{j-1} b_{j-1} x_i^3-4 a_j b_{j-1} x_i^3+2 a_{j+1} b_{j-1} x_i^3-4 a_{j-1} b_j   x_i^3+8 a_j b_j x_i^3-4 a_{j+1} b_j x_i^3+2 a_{j-1} b_{j+1} x_i^3-4 a_j b_{j+1}   x_i^3+2 a_{j+1} b_{j+1} x_i^3+2 a_{j-1} c_{j-1} x_i^2-4 a_j c_{j-1} x_i^2+2   a_{j+1} c_{j-1} x_i^2-4 a_{j-1} c_j x_i^2+8 a_j c_j x_i^2-4 a_{j+1} c_j x_i^2+2   a_{j-1} c_{j+1} x_i^2-4 a_j c_{j+1} x_i^2+2 a_{j+1} c_{j+1} x_i^2+a_{j-1}^2   x_i^4+4 a_j^2 x_i^4+a_{j+1}^2 x_i^4-4 a_{j-1} a_j x_i^4+2 a_{j-1} a_{j+1} x_i^4-4   a_j a_{j+1} x_i^4+2 b_{j-1} c_{j-1} x_i-4 b_j c_{j-1} x_i+2 b_{j+1} c_{j-1} x_i-4   b_{j-1} c_j x_i+8 b_j c_j x_i-4 b_{j+1} c_j x_i+2 b_{j-1} c_{j+1} x_i-4 b_j   c_{j+1} x_i+2 b_{j+1} c_{j+1} x_i+b_{j-1}^2 x_i^2+4 b_j^2 x_i^2+b_{j+1}^2 x_i^2-4   b_{j-1} b_j x_i^2+2 b_{j-1} b_{j+1} x_i^2-4 b_j b_{j+1} x_i^2+c_{j-1}^2+4   c_j^2+c_{j+1}^2-4 c_{j-1} c_j+2 c_{j-1} c_{j+1}-4 c_j c_{j+1}
+\end{dmath*}
+\end{comment}
+
+
+\begin{dmath*}
+\sum_{i} (\frac{\partial^2 f_j(x_i)}{\partial x^2})^2 + 2 (\frac{\partial^2 f_j(x_i)}{\partial x \partial y})^2 + (\frac{\partial^2 f_j(x_i)}{\partial y^2})^2
+\end{dmath*}
+\begin{dmath*}
+= \sum_{i} 2 a_{j-1} b_{j-1} x_i^3-4 a_j b_{j-1} x_i^3+2 a_{j+1} b_{j-1} x_i^3-4 a_{j-1} b_j   x_i^3+8 a_j b_j x_i^3-4 a_{j+1} b_j x_i^3+2 a_{j-1} b_{j+1} x_i^3-4 a_j b_{j+1}   x_i^3+2 a_{j+1} b_{j+1} x_i^3+2. a_{j-1} b_{j-1} x_i-2. a_{j+1} b_{j-1} x_i-2.   a_{j-1} b_{j+1} x_i+2. a_{j+1} b_{j+1} x_i+2 a_{j-1} c_{j-1} x_i^2-4 a_j c_{j-1}   x_i^2+2 a_{j+1} c_{j-1} x_i^2-4 a_{j-1} c_j x_i^2+8 a_j c_j x_i^2-4 a_{j+1} c_j   x_i^2+2 a_{j-1} c_{j+1} x_i^2-4 a_j c_{j+1} x_i^2+2 a_{j+1} c_{j+1}   x_i^2+a_{j-1}^2 x_i^4+4 a_j^2 x_i^4+a_{j+1}^2 x_i^4-4 a_{j-1} a_j x_i^4+2 a_{j-1}   a_{j+1} x_i^4-4 a_j a_{j+1} x_i^4+2. a_{j-1}^2 x_i^2+2. a_{j+1}^2 x_i^2-4. a_{j-1}   a_{j+1} x_i^2+4 a_j^2+2 b_{j-1} c_{j-1} x_i-4 b_j c_{j-1} x_i+2 b_{j+1} c_{j-1}   x_i-4 b_{j-1} c_j x_i+8 b_j c_j x_i-4 b_{j+1} c_j x_i+2 b_{j-1} c_{j+1} x_i-4 b_j   c_{j+1} x_i+2 b_{j+1} c_{j+1} x_i+b_{j-1}^2 x_i^2+4 b_j^2 x_i^2+b_{j+1}^2 x_i^2-4   b_{j-1} b_j x_i^2+2 b_{j-1} b_{j+1} x_i^2-4 b_j b_{j+1} x_i^2+0.5 b_{j-1}^2+0.5   b_{j+1}^2-1. b_{j-1} b_{j+1}+c_{j-1}^2+4 c_j^2+c_{j+1}^2-4 c_{j-1} c_j+2 c_{j-1}   c_{j+1}-4 c_j c_{j+1}
+\end{dmath*}
+
+\subsection{Quadratic in parameters $f$}
+
+\begin{comment}
+\begin{dmath*}
+= \sum_{i}+a_{j-1}^2 x_i^4+4 a_j^2 x_i^4+a_{j+1}^2 x_i^4-4 a_{j-1} a_j x_i^4+2 a_{j-1}   a_{j+1} x_i^4-4 a_j a_{j+1} x_i^4+2. a_{j-1}^2 x_i^2+2. a_{j+1}^2 x_i^2-4. a_{j-1}   a_{j+1} x_i^2+4 a_j^2+2 b_{j-1} c_{j-1} x_i-4 b_j c_{j-1} x_i+2 b_{j+1} c_{j-1}   x_i-4 b_{j-1} c_j x_i+8 b_j c_j x_i-4 b_{j+1} c_j x_i+2 b_{j-1} c_{j+1} x_i-4 b_j   c_{j+1} x_i+2 b_{j+1} c_{j+1} x_i+b_{j-1}^2 x_i^2+4 b_j^2 x_i^2+b_{j+1}^2 x_i^2-4   b_{j-1} b_j x_i^2+2 b_{j-1} b_{j+1} x_i^2-4 b_j b_{j+1} x_i^2+0.5 b_{j-1}^2+0.5   b_{j+1}^2-1. b_{j-1} b_{j+1}+c_{j-1}^2+4 c_j^2+c_{j+1}^2-4 c_{j-1} c_j+2 c_{j-1}   c_{j+1}-4 c_j c_{j+1}
+\end{dmath*}
+$$A = 
+\sum_{i \in N}
+\begin{pmatrix}
+2 x_i^3 & 2 x_i^3 + 2 x_i& 2 x_i^2 & 0 & -4 x_i^3 & -4 x_i^2 & 0 & 2 x_i^3 -2 x_i & 2 x_i^2\\
+0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0\\
+0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0\\
+0 & -4 x_i^3 & -4 x_i^2 & 0 & 8 x_i^3 & 8 x_i^2 & 0 & -4 x_i^3 & -4 x_i^2\\
+0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0\\
+0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0\\
+0 & -2 x_i & 2 x_i^2 & 0 & -4 x_i^3 & -4 x_i^2 & 0 & 2 x_i^3 + 2 x_i & 2 x_i^2\\
+0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0\\
+0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0
+\end{pmatrix}
+$$
+\end{comment}
+
+$$A = 
+\sum_{i}
+\begin{pmatrix}
+x_i^4 + 2 x_i^2 & 2 x_i^3 + 2 x_i & 2 x_i^2 & -4 x_i^4 & -4 x_i^3 & -4 x_i^2 &2 x_i^4 - 4 x_i^2 & 2 x_i^3 - 2x_i & 2 x_i^2\\
+0 & x_i^2 + \frac{1}{2} & 2 x_i & 0 & -4 x_i^2 & -4 x_i & 0 & 2 x_i^2 - 1 & 2 x_i\\
+
+0 & 0 & 1 & 0 & 0 & -4 & 0 & 0 & 2\\
+0 & -4 x_i^3 & -4 x_i^2 & 4 x_i^4 + 4 & 8 x_i^3 & 8 x_i^2 & -4 x_i^4 & -4 x_i^3 & -4 x_i^2\\
+0 & 0 & -4 x_i & 0 & 4 x_i^2 & 8 x_i & 0 & -4 x_i^2 & -4 x_i\\
+0 & 0 & 0 & 0 & 0 & 4 & 0 & 0 & -4\\
+0 & 2 - 2 x_i x_i^3 & 2 x_i^2 & 0 & -4 x_i^3 & -4 x_i^2 & x_i^4 + 2 x_i^2 & 2 x_i^3 + 2 x_i & 2 x_i^2\\
+
+0 & 0 & 2 x_i & 0 & 0 & -4 x_i & 0 & x_i^2 + \frac{1}{2} & 2 x_i\\
+
+0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1
+\end{pmatrix}
+$$
+
+\section{$E_c$}
+$$E_c(f_n, f_s) = \sum_{j=1}^m \sum_i (\frac{\partial (f_{j,n}(x_i) - f_{j,s}(x_i))}{\partial x})^2 + (\frac{\partial (f_{j,n}(x_i) - f_{j,s}(x_i))}{\partial y})^2$$
+
+$$(\frac{\partial (f_{j,n}(x_i) - f_{j,s}(x_i))}{\partial x})^2 = (2 a_{j, n} x_i + b_{j, n} - 2 a_{j, s} x_i - b_{j, s})^2 $$
+
+$$ (\frac{\partial (f_{j,n}(x_i) - f_{j,s}(x_i))}{\partial y})^2 = (\frac{a_{j,n} x_i^2 + b_{j,n} x_i + c_{j,n} - a_{j,s} x_i^2 - b_{j,s} x_i - c_{j,s}}{\partial y})^2$$
+
+$$= \frac{1}{4} (a_{j+1,n} x_i^2 + b_{j+1,n} x_i + c_{j+1,n} - a_{j+1,s} x_i^2 - b_{j+1,s} x_i - c_{j+1,s} - a_{j-1,n} x_i^2 - b_{j-1,n} x_i - c_{j-1,n} + a_{j-1,s} x_i^2 + b_{j-1,s} x_i + c_{j-1,s})^2$$
+
+\begin{dmath*}
+= 0.25 a_{j-1,n}^2 x_i^4+0.25 a_{j-1,s}^2 x_i^4+0.25 a_{j+1,n}^2 x_i^4+0.25 a_{j+1,s}^2   x_i^4-0.5 a_{j-1,n} a_{j-1,s} x_i^4-0.5 a_{j-1,n} a_{j+1,n} x_i^4+0.5 a_{j-1,s}   a_{j+1,n} x_i^4+0.5 a_{j-1,n} a_{j+1,s} x_i^4-0.5 a_{j-1,s} a_{j+1,s} x_i^4-0.5   a_{j+1,n} a_{j+1,s} x_i^4+0.5 a_{j-1,n} b_{j-1,n} x_i^3-0.5 a_{j-1,s} b_{j-1,n}   x_i^3-0.5 a_{j+1,n} b_{j-1,n} x_i^3+0.5 a_{j+1,s} b_{j-1,n} x_i^3-0.5 a_{j-1,n}   b_{j-1,s} x_i^3+0.5 a_{j-1,s} b_{j-1,s} x_i^3+0.5 a_{j+1,n} b_{j-1,s} x_i^3-0.5   a_{j+1,s} b_{j-1,s} x_i^3-0.5 a_{j-1,n} b_{j+1,n} x_i^3+0.5 a_{j-1,s} b_{j+1,n}   x_i^3+0.5 a_{j+1,n} b_{j+1,n} x_i^3-0.5 a_{j+1,s} b_{j+1,n} x_i^3+0.5 a_{j-1,n}   b_{j+1,s} x_i^3-0.5 a_{j-1,s} b_{j+1,s} x_i^3-0.5 a_{j+1,n} b_{j+1,s} x_i^3+0.5   a_{j+1,s} b_{j+1,s} x_i^3+4 a_{j,n}^2 x_i^2+4 a_{j,s}^2 x_i^2+0.25 b_{j-1,n}^2   x_i^2+0.25 b_{j-1,s}^2 x_i^2+0.25 b_{j+1,n}^2 x_i^2+0.25 b_{j+1,s}^2 x_i^2-8   a_{j,n} a_{j,s} x_i^2-0.5 b_{j-1,n} b_{j-1,s} x_i^2-0.5 b_{j-1,n} b_{j+1,n}   x_i^2+0.5 b_{j-1,s} b_{j+1,n} x_i^2+0.5 b_{j-1,n} b_{j+1,s} x_i^2-0.5 b_{j-1,s}   b_{j+1,s} x_i^2-0.5 b_{j+1,n} b_{j+1,s} x_i^2+0.5 a_{j-1,n} c_{j-1,n} x_i^2-0.5   a_{j-1,s} c_{j-1,n} x_i^2-0.5 a_{j+1,n} c_{j-1,n} x_i^2+0.5 a_{j+1,s} c_{j-1,n}   x_i^2-0.5 a_{j-1,n} c_{j-1,s} x_i^2+0.5 a_{j-1,s} c_{j-1,s} x_i^2+0.5 a_{j+1,n}   c_{j-1,s} x_i^2-0.5 a_{j+1,s} c_{j-1,s} x_i^2-0.5 a_{j-1,n} c_{j+1,n} x_i^2+0.5   a_{j-1,s} c_{j+1,n} x_i^2+0.5 a_{j+1,n} c_{j+1,n} x_i^2-0.5 a_{j+1,s} c_{j+1,n}   x_i^2+0.5 a_{j-1,n} c_{j+1,s} x_i^2-0.5 a_{j-1,s} c_{j+1,s} x_i^2-0.5 a_{j+1,n}   c_{j+1,s} x_i^2+0.5 a_{j+1,s} c_{j+1,s} x_i^2+4 a_{j,n} b_{j,n} x_i-4 a_{j,s}   b_{j,n} x_i-4 a_{j,n} b_{j,s} x_i+4 a_{j,s} b_{j,s} x_i+0.5 b_{j-1,n} c_{j-1,n}   x_i-0.5 b_{j-1,s} c_{j-1,n} x_i-0.5 b_{j+1,n} c_{j-1,n} x_i+0.5 b_{j+1,s}   c_{j-1,n} x_i-0.5 b_{j-1,n} c_{j-1,s} x_i+0.5 b_{j-1,s} c_{j-1,s} x_i+0.5   b_{j+1,n} c_{j-1,s} x_i-0.5 b_{j+1,s} c_{j-1,s} x_i-0.5 b_{j-1,n} c_{j+1,n}   x_i+0.5 b_{j-1,s} c_{j+1,n} x_i+0.5 b_{j+1,n} c_{j+1,n} x_i-0.5 b_{j+1,s}   c_{j+1,n} x_i+0.5 b_{j-1,n} c_{j+1,s} x_i-0.5 b_{j-1,s} c_{j+1,s} x_i-0.5   b_{j+1,n} c_{j+1,s} x_i+0.5 b_{j+1,s} c_{j+1,s} x_i+b_{j,n}^2+b_{j,s}^2+0.25   c_{j-1,n}^2+0.25 c_{j-1,s}^2+0.25 c_{j+1,n}^2+0.25 c_{j+1,s}^2-2 b_{j,n}   b_{j,s}-0.5 c_{j-1,n} c_{j-1,s}-0.5 c_{j-1,n} c_{j+1,n}+0.5 c_{j-1,s}   c_{j+1,n}+0.5 c_{j-1,n} c_{j+1,s}-0.5 c_{j-1,s} c_{j+1,s}-0.5 c_{j+1,n} c_{j+1,s}
+\end{dmath*}
+
+\end{document}
