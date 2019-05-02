@@ -26,21 +26,8 @@ If you want to run the program with your own images, place the image file and th
 
     python main.py img1.jpg img2.jpg
 
-## Shadow Detector (https://github.com/jflalonde/shadowDetection)
-I included the shadow detector used in the paper so you can create your own boundary .csv files.
-
-**Instructions:**
-
-1. Follow the compilation instructions of the original repository. Don't forget to also compile the 3rd party libraries already included inside *shadowDetection/pathUtils/*.
-2. Inside the file **setPath.m,** you have to add the following lines:
-
-    addpath(genpath(*'Path to shadowDetector/mycode'*));
-    addpath(genpath(*'Path to shadowDetector/3rd_party\')*);
-    addpath(genpath(*'Path to shadowDetector/pathUtils'*));
-
-3. Add an image to *shadowDetection/mycode/data/img/*. Inside **demoShadowDetection.m**, replace the content of the variable *imgName* with the name of your image (without file extension).
-4. Run **setPath()**, followed by **demoShadowDetection()**.
-5. A file *'imgName.csv'* will be placed inside *shadowDetection/mycode*. This contains xy-coordinates of all shadow boundary points.
+## Shadow Detector
+The paper used a shadow detector proposed in "Detecting ground shadows in outdoor consumer photographs" by J.-F. Lalonde, A. A. Efros, and S. G. Narasimhan (https://github.com/jflalonde/shadowDetection).
 
 ## Scripts
 ### main.<span></span>py
