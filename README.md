@@ -27,7 +27,7 @@ If you want to run the program with your own images, place the image file and th
     python main.py img1.jpg img2.jpg
 
 ## Shadow Detector
-The paper used a shadow detector proposed in "Detecting ground shadows in outdoor consumer photographs" by J.-F. Lalonde, A. A. Efros, and S. G. Narasimhan (https://github.com/jflalonde/shadowDetection).
+The authors used the shadow detector proposed in "Detecting ground shadows in outdoor consumer photographs" by J.-F. Lalonde, A. A. Efros, and S. G. Narasimhan which you can find here: https://github.com/jflalonde/shadowDetection.
 
 ## Scripts
 ### main.<span></span>py
