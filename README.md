@@ -1,6 +1,8 @@
 # Shadow Matte Consistency
 This is a Python implementation of the image forgery detection approach [Identifying Image Composites Through Shadow Matte Consistency](http://ieeexplore.ieee.org/document/5743006/) by Liu et al. 
 
+![banana](https://github.com/seawee1/Shadow-Matte-Consistency/blob/master/banana.jpg "Example of hardly detectable image forgery.")
+
 Important mathmatical derivations not presented in the paper can be found inside the *Latex* folder.
 
 ## Usage
@@ -17,8 +19,6 @@ I also included the [ECCV 2010 Shadow Boundary Dataset](http://vision.gel.ulaval
 
     python main.py
  The program will then list all the available image names, and you can pick the ones you want to test the program with.
-
-![banana](https://github.com/seawee1/Shadow-Matte-Consistency/blob/master/banana_boundary.jpg "Forged image with visualized shadow boundary points.")
 
 If you want to run the program with your own images, place the image file and the corresponding boundary .csv file (for example img.jpg and img.csv) inside the main directory and run
 
