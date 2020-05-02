@@ -18,6 +18,8 @@ I also included the [ECCV 2010 Shadow Boundary Dataset](http://vision.gel.ulaval
     python main.py
  The program will then list all the available image names, and you can pick the ones you want to test the program with.
 
+![banana](https://github.com/seawee1/Shadow-Matte-Consistency/blob/master/banana_boundary.jpg "Forged image with visualized shadow boundary points.")
+
 If you want to run the program with your own images, place the image file and the corresponding boundary .csv file (for example img.jpg and img.csv) inside the main directory and run
 
     python main.py img.jpg
