@@ -1,5 +1,7 @@
 # Shadow Matte Consistency
-This is a Python implementation of the image forgery detection approach [Identifying Image Composites Through Shadow Matte Consistency](http://ieeexplore.ieee.org/document/5743006/) by Liu et al. Important mathmatical derivations not presented in the paper can be found inside the *Latex* folder.
+This is a Python implementation of the image forgery detection approach [Identifying Image Composites Through Shadow Matte Consistency](http://ieeexplore.ieee.org/document/5743006/) by Liu et al. 
+
+Important mathmatical derivations not presented in the paper can be found inside the *Latex* folder.
 
 ## Usage
 **Requirements:** An image with a corresponding .csv file, containing xy-coordinates of all shadow boundary points inside the first two columns.
