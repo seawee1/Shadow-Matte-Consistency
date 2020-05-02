@@ -39,10 +39,10 @@ This script enables the user to draw in a line from the inside of a shadow to it
 ### identifyBoundary.<span></span>py
 With this script a set of connected boundary points is computed. This happens based on a maximum distance from one boundary point to the next one.
 ### sampling.<span></span>py
-This is where the boundary sampling happens. A boundary segment gets divided into groups of 10. To each group a line gets fitted via regression. Along every line, a certain number of pixels gets sampled along the lines normal directions. For this, biliniear interpolation gets used.
+This is where the boundary sampling happens. A boundary segment gets divided into groups of 10. A line is fitted to each group using linear regression. For every line a certain number of pixels is sampled along the lines normal directions, for which liniear interpolation is used.
 ### sigmoid.<span></span>py
 A sigmoid function gets fitted to each boundary patch. With this the so-called penumbra region gets identified.
 ### spline.<span></span>py
-This is the core of the program. Here f_s and f_n get estimated. It also contains the actual code for shadow forgery detection.
+This is the core of the program. Here f_s and f_n are estimated. It also contains the actual shadow forgery detection code.
 ### convert_database.<span></span>py
 Converts the boundary point files of the used dataset from .xml to .csv file format.
