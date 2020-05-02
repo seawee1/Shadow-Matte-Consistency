@@ -1,7 +1,5 @@
 # Shadow Matte Consistency
-This program is a Python implementation of the image forgery detection approach proposed in the paper 
-**"Identifying Image Composites Through Shadow Matte Consistency"** by **Liu et al.** 
-which can be found here: http://ieeexplore.ieee.org/document/5743006/.
+This is a Python implementation of the image forgery detection approach [Identifying Image Composites Through Shadow Matte Consistency](http://ieeexplore.ieee.org/document/5743006/) by Liu et al.
 
 ## Usage
 **Requirements:** An image with a corresponding .csv file, containing xy-coordinates of all shadow boundary points inside the first two columns.
@@ -13,7 +11,7 @@ which can be found here: http://ieeexplore.ieee.org/document/5743006/.
  -	matplotlib
  -	pandas
 
-I also included the *ECCV 2010 Shadow Boundary Dataset* (http://vision.gel.ulaval.ca/~jflalonde/data.html) inside the repository. If you want to test the program with this set, just run
+I also included the [ECCV 2010 Shadow Boundary Dataset](http://vision.gel.ulaval.ca/~jflalonde/data.html) inside the repository. If you want to test the program with this set, just run
 
     python main.py
  The program will then list all the available image names, and you can pick the ones you want to test the program with.
@@ -27,7 +25,7 @@ If you want to run the program with your own images, place the image file and th
     python main.py img1.jpg img2.jpg
 
 ## Shadow Detector
-The authors used the shadow detector proposed in "Detecting ground shadows in outdoor consumer photographs" by J.-F. Lalonde, A. A. Efros, and S. G. Narasimhan which you can find here: https://github.com/jflalonde/shadowDetection.
+The authors used the shadow detector proposed in [Detecting ground shadows in outdoor consumer photographs](https://github.com/jflalonde/shadowDetection) by J.-F. Lalonde, A. A. Efros, and S. G. Narasimhan.
 
 ## Scripts
 ### main.<span></span>py
