@@ -1,7 +1,7 @@
 # Shadow Matte Consistency
-This is a Python implementation of the image forgery detection approach [Identifying Image Composites Through Shadow Matte Consistency](http://ieeexplore.ieee.org/document/5743006/) by Liu et al. 
-
 ![banana](https://github.com/seawee1/Shadow-Matte-Consistency/blob/master/banana.jpg "Example of hardly detectable image forgery.")
+
+This is a Python implementation of the image forgery detection approach [Identifying Image Composites Through Shadow Matte Consistency](http://ieeexplore.ieee.org/document/5743006/) by Liu et al. 
 
 Important mathmatical derivations not presented in the paper can be found inside the *Latex* folder.
 
